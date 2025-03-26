@@ -1,0 +1,542 @@
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    margin: 0;
+    background: #F5F6FF; /* 淡紫色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 移除背景裝飾 */
+body::before, body::after {
+    display: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* 增加最大寬度以適應新設計 */
+    background: transparent; /* 移除背景 */
+    padding: 25px;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent; /* 透明背景 */
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    color: #000;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #FF6200; /* 橙色強調 */
+}
+
+.nav-item.active {
+    color: #FF6200;
+    font-weight: bold;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.nav-btn.primary {
+    background: #FF6200;
+    color: white;
+    border: none;
+}
+
+.nav-btn.secondary {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+}
+
+.nav-btn.primary:hover {
+    background: #E55A00;
+}
+
+.nav-btn.secondary:hover {
+    border-color: #FF6200;
+    color: #FF6200;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+h1, h2, h3 {
+    color: #000;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+h1::after, h2::after {
+    display: none;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.hero-text {
+    text-align: left;
+    flex: 1;
+}
+
+.hero-text p {
+    color: #666;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.primary-btn {
+    background: #FF6200;
+    color: white;
+    border: none;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+    transform: scale(1.05);
+}
+
+.primary-btn:hover {
+    background: #E55A00;
+}
+
+.secondary-btn:hover {
+    border-color: #FF6200;
+    color: #FF6200;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: right;
+}
+
+.hero-image img {
+    width: 200px;
+    height: auto;
+}
+
+.overview {
+    background: #FFF;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.overview p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.actions button, .actions select {
+    padding: 12px 24px;
+    background: #FF6200;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.actions button:hover, .actions select:hover {
+    background: #E55A00;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.actions button:active {
+    transform: scale(0.95);
+}
+
+.actions select {
+    background: #FFCA28;
+    color: #333;
+}
+
+#message {
+    color: #333;
+    font-size: 16px;
+    margin: 15px 0;
+    padding: 10px;
+    background: #FFF;
+    border-radius: 10px;
+}
+
+/* 彈窗樣式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #FFF;
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: popIn 0.3s ease-in-out;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin: 15px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.modal-content input[type="datetime-local"] {
+    padding: 8px;
+    border: 1px solid #D7CCC8;
+    border-radius: 10px;
+    background: #FFFFFF;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.modal-actions button:first-child {
+    background: #FF6200;
+    color: white;
+}
+
+.modal-actions button:first-child:hover {
+    background: #E55A00;
+    transform: scale(1.1);
+}
+
+.modal-actions button:last-child {
+    background: #EF9A9A;
+    color: white;
+}
+
+.modal-actions button:last-child:hover {
+    background: #E57373;
+    transform: scale(1.1);
+}
+
+/* KPI Card 樣式 */
+.kpi-card {
+    background: #FFF;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-card p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.chart, .weekly-chart {
+    margin: 30px 0;
+    padding: 20px;
+    background: #FFF;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.chart p, .weekly-chart p {
+    color: #333;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.chart canvas {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 0 auto;
+}
+
+.chart-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.chart-controls button {
+    padding: 8px 16px;
+    background: #FF6200;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.chart-controls button:hover {
+    background: #E55A00;
+    transform: scale(1.1);
+}
+
+#challenge-list {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#challenge-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#challenge-list::-webkit-scrollbar-track {
+    background: #FFF;
+    border-radius: 10px;
+}
+
+#challenge-list::-webkit-scrollbar-thumb {
+    background: #FF6200;
+    border-radius: 10px;
+}
+
+#challenge-list::-webkit-scrollbar-thumb:hover {
+    background: #E55A00;
+}
+
+.challenge-item {
+    background: #FFF;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    color: #333;
+}
+
+.challenge-item .progress-bar {
+    width: 100%;
+    background: #D7CCC8;
+    border-radius: 10px;
+    height: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.challenge-item .progress {
+    height: 100%;
+    background: #FF6200;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.challenge-item button {
+    padding: 8px 16px;
+    background: #A5D6A7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.challenge-item button:hover {
+    background: #7CB342;
+}
+
+.challenge-animation {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    font-size: 24px;
+    color: #FF6200;
+    animation: celebrate 2s ease-in-out forwards;
+}
+
+.challenge-animation.active {
+    display: block;
+}
+
+@keyframes celebrate {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; display: none; }
+}
+
+#claim-all-btn {
+    padding: 10px 20px;
+    background: #FF6200;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+#claim-all-btn:hover {
+    background: #E55A00;
+    transform: scale(1.1);
+}
+
+#claim-all-btn:active {
+    transform: scale(0.95);
+}
+
+#settings label {
+    display: block;
+    margin: 15px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+#settings select {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #D7CCC8;
+    background: #FFF;
+    color: #333;
+}
+
+#settings button {
+    padding: 12px 24px;
+    background: #FF6200;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin: 10px;
+}
+
+#settings button:hover {
+    background: #E55A00;
+    transform: scale(1.1);
+}
+
+#settings .reset-btn {
+    background: #EF9A9A;
+}
+
+#settings .reset-btn:hover {
+    background: #E57373;
+}
