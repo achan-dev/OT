@@ -12,10 +12,10 @@ const state = {
 
 // 圖片預載入
 const tomatoImages = {
-    default: 'assets/tomato_default.png',
-    working: 'assets/tomato_working.png',
-    happy: 'assets/tomato_happy.png',
-    tired: 'assets/tomato_tired.png'
+    default: 'tomato_default.png',
+    working: 'tomato_working.png',
+    happy: 'tomato_happy.png',
+    tired: 'tomato_tired.png'
 };
 
 function preloadImages() {
